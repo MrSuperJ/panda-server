@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node config/dev.js"
+    "dev": "node config/dev.js",
+    "start": "./node_modules/.bin/nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,9 @@
     "mongoose": "^5.10.2"
   },
   "devDependencies": {
-    "inquirer": "^7.3.3"
+    "cross-env": "^7.0.2",
+    "inquirer": "^7.3.3",
+    "nodemon": "^2.0.4",
+    "shelljs": "^0.8.4"
   }
 }

@@ -1,6 +1,5 @@
-// 需求：使用inquire要求用户输入数据库密码、账号 然后启动
-
 const inquirer = require('inquirer');
+const shell = require('shelljs');
 
 const promptList = [
   {
@@ -36,8 +35,7 @@ const promptList = [
 ];
 
 inquirer.prompt(promptList).then((answers) => {
-  console.log('结果为:');
-  console.log(answers);
+  shell.exec(
+    `cross-env DB_NAME=${answers.db_name} DB_PORT=${answers.db_port} DB_HOSTNAME=${answers.db_hostname} DB_USERNAME=${answers.db_username} DB_PASSWORD=${answers.db_password} npm run start`
+  );
 });
-
-
