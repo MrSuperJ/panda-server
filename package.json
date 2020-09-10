@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node config/dev.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,10 @@
     "koa-logger": "^3.2.1",
     "koa-onerror": "^4.1.0",
     "koa-static": "^5.0.0",
+    "koa-views": "^6.3.0",
     "mongoose": "^5.10.2"
+  },
+  "devDependencies": {
+    "inquirer": "^7.3.3"
   }
 }

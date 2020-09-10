@@ -1,7 +1,8 @@
+const { DB_URL } = require('./index');
 const mongoose = require('mongoose');
 
 // 连接
-mongoose.connect('mongodb://test:123456@101.37.16.204:27017/test', {
+mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
