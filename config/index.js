@@ -5,7 +5,6 @@ const DB_PORT = process.env.DB_PORT || '27017';
 const DB_NAME = process.env.DB_NAME || 'test';
 
 const DB_URL = `mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}:${DB_PORT}/${DB_NAME}`;
-console.log(DB_URL);
 
 module.exports = {
   DB_URL,
