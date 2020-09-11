@@ -31,10 +31,14 @@ const user = require('./routes/user');
 const home = require('./routes/home');
 const product = require('./routes/product');
 const cart = require('./routes/cart');
+const category = require('./routes/category');
+const search = require('./routes/search');
 app.use(user.routes(), user.allowedMethods());
 app.use(home.routes(), home.allowedMethods());
 app.use(product.routes(), product.allowedMethods());
 app.use(cart.routes(), cart.allowedMethods());
+app.use(category.routes(), category.allowedMethods());
+app.use(search.routes(), search.allowedMethods());
 
 // start service
 app.listen(3210, () => {
