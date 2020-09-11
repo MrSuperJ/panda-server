@@ -28,8 +28,11 @@ app.use(async (ctx, next) => {
 
 // routes
 const user = require('./routes/user');
+const home = require('./routes/home');
 app.use(user.routes(), user.allowedMethods());
+app.use(home.routes(), home.allowedMethods());
 
-app.listen(3000, () => {
-  console.log('服务器启动成功');
+// start service
+app.listen(3210, () => {
+  console.log('服务器成功启动在3210端口上');
 });

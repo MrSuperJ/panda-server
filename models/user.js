@@ -1,7 +1,9 @@
 const mongoose = require('../config/mongo.js');
 
 const UserSchema = new mongoose.Schema({
+  id: Number,
   name: String,
+  avatar: String,
   age: Number,
   createAt: {
     type: Date,
@@ -9,6 +11,6 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-const UsersModel = mongoose.model('Users', UserSchema);
+const UsersModel = mongoose.model('User', UserSchema);
 
 module.exports = UsersModel;
