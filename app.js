@@ -29,8 +29,12 @@ app.use(async (ctx, next) => {
 // routes
 const user = require('./routes/user');
 const home = require('./routes/home');
+const product = require('./routes/product');
+const cart = require('./routes/cart');
 app.use(user.routes(), user.allowedMethods());
 app.use(home.routes(), home.allowedMethods());
+app.use(product.routes(), product.allowedMethods());
+app.use(cart.routes(), cart.allowedMethods());
 
 // start service
 app.listen(3210, () => {
