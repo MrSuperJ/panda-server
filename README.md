@@ -4,7 +4,6 @@
 </p>
 
 <p align="center">
- 
   <a href="https://nodejs.org/">
     <img src="https://img.shields.io/badge/node-10.16.0-brightgreen.svg" alt="vue-cli">
   </a>
@@ -26,8 +25,8 @@
 
 [Panda-mall](https://github.com/Ewall1106/mall/) 商城的后端项目，技术栈主要使用 `node+koa+mongodb` 来实现。
 
-- [项目预览](https://ewall1106.github.io/panda-mall)
-- [文档说明](https://ewall1106.github.io/docs-mall)
+- [项目预览](https://mall.xwhx.top/)
+- [文档说明](https://docs.xwhx.top/base/)
 
 ## 使用
 
@@ -42,6 +41,6 @@ $ npm run dev
 
 ## 协议
 
-[MIT](https://github.com/Ewall1106/mall/blob/master/LICENSE)
+[MIT](https://github.com/Ewall1106/panda-server/blob/master/LICENSE)
 
 Copyright (c) 2020-present Ewall&熊猫
