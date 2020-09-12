@@ -27,6 +27,7 @@
 
 - [项目预览](https://mall.xwhx.top/)
 - [文档说明](https://docs.xwhx.top/base/)
+- [更新日志](https://github.com/Ewall1106/panda-server/blob/master/changelog.md)
 
 ## 使用
 
