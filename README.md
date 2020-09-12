@@ -33,17 +33,12 @@
 
 ```
 # 下载到本地
-$ git clone git@github.com:Ewall1106/mall.git
+$ git clone git@github.com:Ewall1106/panda-server.git
 
 # 客户端运行
 $ npm install
 $ npm run dev
 ```
-
-## 推荐
-
-- [webpack 从 0 到 1](https://github.com/Ewall1106/webpack-demo)
-- [create-panda-app](https://github.com/Ewall1106/create-panda-app)
 
 ## 协议
 
