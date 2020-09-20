@@ -1,6 +1,10 @@
+## 当前规划
+
+- [x] docs：整理一些常用及项目中用到的 koa 中间件。
+
 ## 更新日志
 
-### [v1.0.0](https://github.com/Ewall1106/panda-server/tree/1.0.0)
+## [v1.0.0](https://github.com/Ewall1106/panda-server/tree/1.0.0)
 
 `2020-09-12`
 
