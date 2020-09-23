@@ -17,7 +17,8 @@
     "koa-onerror": "^4.1.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.3.0",
-    "mongoose": "^5.10.2"
+    "mongoose": "^5.10.2",
+    "svg-captcha": "^1.4.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
