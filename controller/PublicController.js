@@ -1,4 +1,5 @@
 const svgCaptcha = require('svg-captcha');
+const mailInit = require('../config/mail');
 
 const PublicController = {
   async getCaptcha(ctx) {
@@ -12,6 +13,31 @@ const PublicController = {
       code: 200,
       entry: captcha.data,
     };
+  },
+
+  async sendMail(ctx) {
+    // const { num } = ctx.request.body;
+    try {
+      let result = await mailInit({
+        user: 'test',
+        expire: '23454:1234t',
+        code: '',
+        username: '123423',
+        url: 'www.baidu.com',
+      });
+      ctx.body = {
+        code: 200,
+        entry: '邮箱验证码已经发送成功',
+      };
+    } catch (err) {
+      ctx.body = {
+        code: 200,
+        entry: {
+          msg: '邮箱验证码发送失败',
+          reason: `原因为：${err}`,
+        },
+      };
+    }
   },
 };
 
