@@ -1,5 +1,5 @@
 const router = require('@koa/router')();
-const PublicController = require('../controller/PublicController');
+const PublicController = require('../../controller/PublicController');
 
 router.prefix('/public');
 

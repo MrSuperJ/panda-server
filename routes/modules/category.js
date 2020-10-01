@@ -1,6 +1,6 @@
 const router = require('@koa/router')();
-const CateItems = require('../models/cate_item');
-const CateLists = require('../models/cate_list');
+const CateItems = require('../../models/cate_item');
+const CateLists = require('../../models/cate_list');
 
 router.prefix('/category');
 

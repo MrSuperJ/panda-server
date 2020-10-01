@@ -1,5 +1,5 @@
 const router = require('@koa/router')();
-const HomeController = require('../controller/HomeController');
+const HomeController = require('../../controller/HomeController');
 
 router.prefix('/home');
 

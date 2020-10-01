@@ -1,6 +1,6 @@
 const router = require('@koa/router')();
-const ProductList = require('../models/product_list');
-const ProductDetail = require('../models/product_detail');
+const ProductList = require('../../models/product_list');
+const ProductDetail = require('../../models/product_detail');
 
 router.prefix('/product');
 

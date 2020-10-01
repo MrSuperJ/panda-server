@@ -1,20 +1,25 @@
+const path = require('path');
+
 const Koa = require('koa');
+const koaBody = require('koa-body');
 const views = require('koa-views');
 const json = require('koa-json');
 const onerror = require('koa-onerror');
-const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
-const path = require('path');
+const compress = require('koa-compress');
+
+const router = require('./routes');
 
 const app = new Koa();
 
 // error handler
 onerror(app);
 
-// middlewares
-app.use(bodyparser({ enableTypes: ['json', 'form', 'text'] }));
+// middleware
+app.use(koaBody());
 app.use(json());
 app.use(logger());
+app.use(compress());
 app.use(require('koa-static')(path.resolve(__dirname, '/public')));
 app.use(views(path.resolve(__dirname, '/views'), { extension: 'pug' }));
 
@@ -27,20 +32,7 @@ app.use(async (ctx, next) => {
 });
 
 // routes
-const user = require('./routes/user');
-const home = require('./routes/home');
-const product = require('./routes/product');
-const cart = require('./routes/cart');
-const category = require('./routes/category');
-const search = require('./routes/search');
-const public = require('./routes/public');
-app.use(user.routes(), user.allowedMethods());
-app.use(home.routes(), home.allowedMethods());
-app.use(product.routes(), product.allowedMethods());
-app.use(cart.routes(), cart.allowedMethods());
-app.use(category.routes(), category.allowedMethods());
-app.use(search.routes(), search.allowedMethods());
-app.use(public.routes(), public.allowedMethods());
+app.use(router());
 
 // start service
 app.listen(3210, () => {

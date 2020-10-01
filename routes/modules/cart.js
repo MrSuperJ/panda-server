@@ -1,5 +1,5 @@
 const router = require('@koa/router')();
-const Cart = require('../models/cart');
+const Cart = require('../../models/cart');
 
 router.prefix('/cart');
 
