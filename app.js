@@ -4,6 +4,7 @@ const Koa = require('koa');
 const koaBody = require('koa-body');
 const views = require('koa-views');
 const json = require('koa-json');
+const helmet = require('koa-helmet');
 const onerror = require('koa-onerror');
 const logger = require('koa-logger');
 const compress = require('koa-compress');
@@ -16,8 +17,9 @@ const app = new Koa();
 onerror(app);
 
 // middleware
-app.use(koaBody());
 app.use(json());
+app.use(koaBody());
+app.use(helmet())
 app.use(logger());
 app.use(compress());
 app.use(require('koa-static')(path.resolve(__dirname, '/public')));
