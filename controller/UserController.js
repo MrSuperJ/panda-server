@@ -1,4 +1,6 @@
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { JWT_SECRET } = require('../config/index');
 
 const UserController = {
   // get user info
@@ -27,6 +29,8 @@ const UserController = {
         token: 'mall-token123456',
       },
     };
+
+    const token = jwt.sign({ foo: 'bar' }, JWT_SECRET, { expiresIn: 60 * 60 });
   },
 };
 

@@ -1,6 +1,7 @@
 const path = require('path');
 
 const Koa = require('koa');
+const jwt = require('koa-jwt');
 const koaBody = require('koa-body');
 const views = require('koa-views');
 const json = require('koa-json');
@@ -11,6 +12,9 @@ const compress = require('koa-compress');
 
 const router = require('./routes');
 
+const JwtErrorHandler = require('./service/JwtErrorHandler');
+const { JWT_SECRET } = require('./config/index');
+
 const app = new Koa();
 
 // error handler
@@ -19,11 +23,13 @@ onerror(app);
 // middleware
 app.use(json());
 app.use(koaBody());
-app.use(helmet())
+app.use(helmet());
 app.use(logger());
 app.use(compress());
 app.use(require('koa-static')(path.resolve(__dirname, '/public')));
 app.use(views(path.resolve(__dirname, '/views'), { extension: 'pug' }));
+app.use(JwtErrorHandler);
+app.use(jwt({ secret: JWT_SECRET }).unless({ path: [/^\/public/, /\/login/] }));
 
 // logger
 app.use(async (ctx, next) => {
