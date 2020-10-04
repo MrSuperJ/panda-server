@@ -1,14 +1,20 @@
 const svgCaptcha = require('svg-captcha');
 const mailInit = require('../config/mail');
+const { setValue } = require('../config/redis');
 
 const PublicController = {
   async getCaptcha(ctx) {
+    const { sid } = ctx.request.query;
+
     const captcha = svgCaptcha.create({
       width: 100,
       height: 30,
       fontSize: 38,
       color: false,
     });
+
+    setValue(sid, captcha.text);
+   
     ctx.body = {
       code: 200,
       entry: captcha.data,
