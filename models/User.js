@@ -2,7 +2,9 @@ const mongoose = require('../config/mongo.js');
 
 const UserSchema = new mongoose.Schema({
   id: Number,
-  name: String,
+  username: String,
+  password: String,
+  nickname: String,
   avatar: String,
   age: Number,
   createAt: {

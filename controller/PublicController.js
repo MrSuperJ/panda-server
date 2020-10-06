@@ -13,8 +13,8 @@ const PublicController = {
       color: false,
     });
 
-    setValue(sid, captcha.text);
-   
+    setValue(sid, captcha.text, 10 * 60);
+
     ctx.body = {
       code: 200,
       entry: captcha.data,

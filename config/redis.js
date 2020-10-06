@@ -33,11 +33,12 @@ client.on('error', function (error) {
   console.error(error);
 });
 
-const setValue = (key, value) => {
+const setValue = (key, value, time) => {
   if (value == null || value === '') {
     return;
   }
-  client.set(key, value, redis.print);
+  if (time) client.set(key, value, 'EX', time);
+  else client.set(key, value, redis.print);
 };
 
 const getValue = (key) => {
