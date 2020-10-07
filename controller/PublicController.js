@@ -1,8 +1,12 @@
 const svgCaptcha = require('svg-captcha');
 const mailInit = require('../config/mail');
-const { setValue } = require('../config/redis');
+const { setValue, getValue } = require('../config/redis');
+const { genMailCode, formatTime } = require('../utils');
+
+const dayjs = require('dayjs');
 
 const PublicController = {
+  // 图形验证码
   async getCaptcha(ctx) {
     const { sid } = ctx.request.query;
 
@@ -21,15 +25,26 @@ const PublicController = {
     };
   },
 
+  // 邮箱验证码
   async sendMail(ctx) {
-    // const { num } = ctx.request.body;
+    const { mailsid } = ctx.request.query;
+    // 是否发送邮箱验证码
+    const value = await getValue(mailsid);
+    if (value) {
+      ctx.body = {
+        code: 400,
+        message: '邮箱验证码24小时之内有效，请勿重复发送',
+      };
+      return;
+    }
+    // 发送并存储邮箱验证码
+    const expire = formatTime(+new Date() + 60 * 60 * 24, 'Y-M-D h:m:s');
+    const code = genMailCode();
+    setValue(mailsid, code, 60 * 60 * 24);
     try {
-      let result = await mailInit({
-        user: 'test',
-        expire: '23454:1234t',
-        code: '',
-        username: '123423',
-        url: 'www.baidu.com',
+      await mailInit({
+        expire,
+        code,
       });
       ctx.body = {
         code: 200,
@@ -39,7 +54,7 @@ const PublicController = {
       ctx.body = {
         code: 200,
         entry: {
-          msg: '邮箱验证码发送失败',
+          message: '邮箱验证码发送失败',
           reason: `原因为：${err}`,
         },
       };

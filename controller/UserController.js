@@ -16,13 +16,37 @@ const UserController = {
 
   // registration
   async registry(ctx, next) {
-    const { email, password, code, captcha, sid } = ctx.request.body;
+    const { email, password, confirmPassword, mailcode, captcha, sid, mailsid } = ctx.request.body;
     // 邮箱已经被注册
     const user = await User.findOne({ username: email });
     if (user && user.username) {
       ctx.body = {
         code: 400,
         message: '邮箱已经注册，可通过邮箱找回密码',
+      };
+      return;
+    }
+    // 验证密码是否一致
+    if (password !== confirmPassword) {
+      ctx.body = {
+        code: 400,
+        message: '确认密码与设置的不一致',
+      };
+      return;
+    }
+    // 验证邮箱验证码
+    const redisMailCode = await getValue(mailsid);
+    if (!redisMailCode) {
+      ctx.body = {
+        code: 400,
+        message: '请点击发送验证码重新发送',
+      };
+      return;
+    }
+    if (redisMailCode !== mailcode) {
+      ctx.body = {
+        code: 400,
+        message: '请输入正确的邮箱验证码',
       };
       return;
     }
@@ -42,7 +66,6 @@ const UserController = {
       };
       return;
     }
-    // 验证邮箱验证码
     // 注册写入数据库
     await User.create({
       username: email,
