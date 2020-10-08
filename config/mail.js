@@ -14,7 +14,7 @@ async function mailInit(data) {
 
   await transporter.sendMail({
     from: '"认证邮件" <ewallxiong@qq.com>',
-    to: 'ewallxiong@qq.com',
+    to: data.email,
     subject: 'PandaMall商城验证码',
     text: 'Hello world?',
     html: `

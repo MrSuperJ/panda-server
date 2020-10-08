@@ -8,8 +8,8 @@ WORKDIR /app
 # 就类似于git add .
 COPY . /app
 
-RUN npm config set registry https://registry.npm.taobao.org/ && \
-    npm install
+RUN yarn config set registry https://registry.npm.taobao.org/ && \
+    yarn install
 
 EXPOSE 3000
 

@@ -3,14 +3,20 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const { JWT_SECRET } = require('../config/index');
 const { getValue } = require('../config/redis');
+const { getJwtPayload } = require('../utils');
 
 const UserController = {
   // get user info
   async getUserInfo(ctx, next) {
-    const data = await User.findOne({ id: 1 });
+    // 取用户的ID
+    const { uid } = await getJwtPayload(ctx.header.authorization);
+    const data = await User.findOne({ _id: uid });
     ctx.body = {
       code: 200,
-      entry: data,
+      entry: {
+        username: data.username,
+        uid,
+      },
     };
   },
 
@@ -118,7 +124,7 @@ const UserController = {
     }
 
     // 登录成功
-    const token = jwt.sign({ foo: 'bar' }, JWT_SECRET, { expiresIn: '15d' });
+    const token = jwt.sign({ uid: user._id }, JWT_SECRET, { expiresIn: '15d' });
     ctx.body = {
       code: 200,
       entry: {

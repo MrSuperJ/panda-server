@@ -3,8 +3,6 @@ const mailInit = require('../config/mail');
 const { setValue, getValue } = require('../config/redis');
 const { genMailCode, formatTime } = require('../utils');
 
-const dayjs = require('dayjs');
-
 const PublicController = {
   // 图形验证码
   async getCaptcha(ctx) {
@@ -27,7 +25,7 @@ const PublicController = {
 
   // 邮箱验证码
   async sendMail(ctx) {
-    const { mailsid } = ctx.request.query;
+    const { email, mailsid } = ctx.request.body;
     // 是否发送邮箱验证码
     const value = await getValue(mailsid);
     if (value) {
@@ -43,6 +41,7 @@ const PublicController = {
     setValue(mailsid, code, 60 * 60 * 24);
     try {
       await mailInit({
+        email,
         expire,
         code,
       });

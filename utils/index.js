@@ -1,5 +1,9 @@
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config/index');
+
 /**
  * 简单生成4位数验证码
+ * @returns {Number}
  */
 function genMailCode() {
   let num = '';
@@ -36,7 +40,16 @@ function formatTime(number, format) {
   return format;
 }
 
+/**
+ * 获取JWT鉴权中的payload
+ * @returns {Number}
+ */
+function getJwtPayload(token) {
+  return jwt.verify(token.split(' ')[1], JWT_SECRET);
+}
+
 module.exports = {
   genMailCode,
   formatTime,
+  getJwtPayload,
 };
