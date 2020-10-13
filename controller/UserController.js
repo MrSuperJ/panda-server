@@ -107,10 +107,10 @@ const UserController = {
     }
     // 验证用户是否存在
     const user = await User.findOne({ username });
-    if (!user.username) {
+    if (!user) {
       ctx.body = {
         code: 400,
-        message: '用户不存在请重新输入用户名',
+        message: '用户不存在',
       };
       return;
     }

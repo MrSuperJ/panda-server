@@ -25,9 +25,9 @@ const PublicController = {
 
   // 邮箱验证码
   async sendMail(ctx) {
-    const { email, mailsid } = ctx.request.body;
+    const { email } = ctx.request.body;
     // 是否发送邮箱验证码
-    const value = await getValue(mailsid);
+    const value = await getValue(email);
     if (value) {
       ctx.body = {
         code: 400,
@@ -38,24 +38,24 @@ const PublicController = {
     // 发送并存储邮箱验证码
     const expire = formatTime(+new Date() + 60 * 60 * 24, 'Y-M-D h:m:s');
     const code = genMailCode();
-    setValue(mailsid, code, 60 * 60 * 24);
     try {
       await mailInit({
         email,
         expire,
         code,
       });
+      setValue(email, code, 60 * 60 * 24);
       ctx.body = {
         code: 200,
         entry: '邮箱验证码已经发送成功',
       };
     } catch (err) {
       ctx.body = {
-        code: 200,
+        code: 400,
         entry: {
-          message: '邮箱验证码发送失败',
           reason: `原因为：${err}`,
         },
+        message: '邮箱验证码发送失败',
       };
     }
   },
