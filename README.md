@@ -39,6 +39,7 @@ $ git clone git@github.com:Ewall1106/panda-server.git
 $ npm install
 $ npm run dev
 ```
+> ⚠️ 运行前请先自行配置 `config/index.js` 文件。
 
 ## 协议
 
