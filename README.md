@@ -5,13 +5,10 @@
 
 <p align="center">
   <a href="https://nodejs.org/">
-    <img src="https://img.shields.io/badge/node-10.16.0-brightgreen.svg" alt="vue-cli">
+    <img src="https://img.shields.io/badge/node-10.16.0-brightgreen.svg" alt="nodejs">
   </a>
   <a href="https://koa.bootcss.com/">
     <img src="https://img.shields.io/badge/koa-2.13.0-brightgreen.svg" alt="koa">
-  </a>
-  <a href="https://youzan.github.io/vant/#/zh-CN/">
-    <img src="https://img.shields.io/badge/mongoose-5.10.2-brightgreen.svg" alt="vant">
   </a>
    <a href="https://www.npmjs.com/">
     <img src="https://img.shields.io/badge/npm-6.9.0-brightgreen.svg" alt="npm">
