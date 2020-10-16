@@ -13,7 +13,7 @@ async function mailInit(data) {
   });
 
   await transporter.sendMail({
-    from: '认证邮件',
+    from: MAIL_USER',
     to: data.email,
     subject: 'PandaMall商城验证码',
     text: '',
